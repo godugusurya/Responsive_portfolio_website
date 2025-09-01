@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - Updated</title>
+    <!-- Use the Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Include Tailwind CSS via CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d121c; /* A deep, dark background */
+            color: #d1d5db; /* Light gray text for contrast */
+        }
+        /* A smooth scroll effect for internal links */
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-header {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6ee7b7; /* A vibrant green for headers */
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            position: relative;
+            display: inline-block;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 75px;
+            height: 4px;
+            background-color: #60a5fa; /* A vibrant blue underline */
+            border-radius: 2px;
+        }
+        .card {
+            background-color: #1a202c;
+            border-radius: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section Enhancements */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px #4ade80; }
+            50% { box-shadow: 0 0 20px #4ade80, 0 0 30px #4ade80; }
+            100% { box-shadow: 0 0 10px #4ade80; }
+        }
+        .btn-pulse-glow:hover {
+            animation: pulse-glow 1.5s infinite;
+        }
+        
+        /* Typing cursor animation */
+        .typing-cursor {
+            border-right: .15em solid #6ee7b7;
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #6ee7b7; }
+        }
+
+        /* New Animations for on-scroll effects */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pop-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .pop-in.is-visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .pop-in-delay-1 { transition-delay: 0.1s; }
+        .pop-in-delay-2 { transition-delay: 0.2s; }
+        .pop-in-delay-3 { transition-delay: 0.3s; }
+        .pop-in-delay-4 { transition-delay: 0.4s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-gray-900 shadow-xl fixed top-0 w-full z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-teal-400">My Portfolio</a>
+            <nav>
+                <ul class="flex space-x-6 text-lg font-medium">
+                    <li><a href="#about" class="hover:text-teal-400 transition-colors duration-300">About</a></li>
+                    <li><a href="#skills" class="hover:text-teal-400 transition-colors duration-300">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-teal-400 transition-colors duration-300">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-teal-400 transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-12">
+        <!-- Hero Section -->
+        <section id="hero" class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex items-center justify-center p-6 text-white relative overflow-hidden">
+            <!-- Animated background elements (pure CSS) -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute w-32 h-32 bg-teal-400 opacity-10 rounded-full blur-3xl -top-10 -left-10 animate-pulse"></div>
+                <div class="absolute w-48 h-48 bg-blue-500 opacity-10 rounded-full blur-3xl -bottom-20 -right-20 animate-pulse delay-500"></div>
+            </div>
+            
+            <div class="text-center max-w-4xl mx-auto px-4 py-16 relative z-10">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 animate-fadeInUp">
+                    Godugu Surya
+                </h1>
+                <p class="text-2xl md:text-3xl font-light text-gray-300 mb-8 animate-fadeIn delay-300">
+                    <span id="typing-text"></span><span class="typing-cursor">|</span>
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#projects" class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-105 btn-pulse-glow">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        Let's Talk
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 md:py-24 px-6 fade-in">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="section-header mx-auto">About Me</h2>
+                <div class="flex flex-col lg:flex-row items-center lg:space-x-8 mt-12 fade-in pop-in-delay-1">
+                    <div class="text-left leading-relaxed">
+                        <p class="text-lg text-gray-400 mb-4 fade-in pop-in-delay-2">
+                            Hello! I am Godugu Surya, a passionate and detail-oriented full-stack developer with over 2 years of experience building scalable, secure, and beautiful web applications. My journey in tech began with a curiosity for how things work, which quickly evolved into a passion for crafting intuitive user experiences and solving complex technical challenges.
+                        </p>
+                        <p class="text-lg text-gray-400 mb-4 fade-in pop-in-delay-3">
+                            My expertise spans across modern front-end frameworks like **React** and **Vue.js** to robust back-end systems using **Node.js** and **Python**. I have a strong foundation in cloud services, database management, and API design. I believe in writing clean, maintainable code and am always eager to learn new technologies.
+                        </p>
+                        <p class="text-lg text-gray-400 fade-in pop-in-delay-4">
+                            When I'm not coding, you can find me enjoying a good book, exploring new hiking trails, or contributing to open-source projects. I thrive in collaborative environments and am currently seeking new opportunities to build innovative products that make a real impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-gray-800 py-16 md:py-24 px-6 fade-in">
+            <div class="container mx-auto max-w-6xl text-center">
+                <h2 class="section-header mx-auto">My Skills</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 mt-12">
+                    <!-- HTML Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-orange-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 13.5l1.6 4.8 7.4 2.7 7.4-2.7L22 13.5zM2 13.5l10-4.5 10 4.5"></path>
+                            <path d="M12 10.5l10-4.5-10-4.5-10 4.5z"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">HTML</span>
+                    </div>
+                    <!-- C Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+                            <path d="M15 9.5a3.5 3.5 0 01-3.5 3.5m0-7a3.5 3.5 0 013.5 3.5"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">C</span>
+                    </div>
+                    <!-- Tailwind CSS Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.35 2 12.28 2 8.5A5.5 5.5 0 017.5 3c1.74 0 3.41.81 4.5 2.09A5.5 5.5 0 0116.5 3a5.5 5.5 0 015.5 5.5c0 3.78-3.4 6.85-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">Tailwind CSS</span>
+                    </div>
+                    <!-- JavaScript Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">JavaScript</span>
+                    </div>
+                    <!-- React Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 10a8 8 0 10-16 0 8 8 0 0016 0zm-8 10v-4m0-4V4m0 4l-3-3m3 3l3-3m-3 3l3 3m-3-3l-3 3"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">React</span>
+                    </div>
+                    <!-- Node.js Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 12a4 4 0 108 0 4 4 0 00-8 0z"></path>
+                            <path d="M12 12a2 2 0 104 0 2 2 0 00-4 0z"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">Node.js</span>
+                    </div>
+                    <!-- Python Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+                            <path d="M12 6v6m0 0v6"></path>
+                            <path d="M6 12h6m0 0h6"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">Python</span>
+                    </div>
+                    <!-- SQL Icon -->
+                    <div class="flex flex-col items-center p-4 pop-in">
+                        <svg class="w-16 h-16 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path>
+                            <path d="M12 6v12m0 0l4-4m-4 4l-4-4"></path>
+                        </svg>
+                        <span class="mt-2 text-lg font-medium text-white">SQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-gray-900 py-16 md:py-24 px-6 fade-in">
+            <div class="container mx-auto max-w-6xl text-center">
+                <h2 class="section-header mx-auto">Projects ✨</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
+                    <!-- Project Card 1: E-commerce Platform -->
+                    <div class="card p-8 shadow-xl fade-in pop-in-delay-1">
+                        <img src="https://placehold.co/600x400/374151/FFFFFF?text=E-Commerce+Platform" alt="E-Commerce Platform" class="rounded-2xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-3xl font-semibold text-white mb-2">Full-Stack E-Commerce Platform</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed"> Unleash the power of commerce! This project is a complete e-commerce solution with a lightning-fast React front-end and a super-secure Node.js backend. It features user authentication, a dynamic shopping cart, and a flawless payment system powered by Stripe, all working together for an ultimate shopping experience.</p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="#" class="inline-block bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">View Demo</a>
+                            <a href="#" class="inline-block bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">GitHub</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: Real-time Chat App -->
+                    <div class="card p-8 shadow-xl fade-in pop-in-delay-2">
+                        <img src="https://placehold.co/600x400/374151/FFFFFF?text=Real-time+Chat+App" alt="Real-time Chat App" class="rounded-2xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-3xl font-semibold text-white mb-2">Real-time Collaborative Chat App</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed"> This is my Real-time Communication Jutsu! This dynamic chat application, built with Vue.js and Socket.IO, allows users to exchange messages in real-time, just like a mind-link. It handles persistent connections and user presence with a focus on instant messaging, so you can connect with your team at the speed of thought. </p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="#" class="inline-block bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">View Demo</a>
+                            <a href="#" class="inline-block bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">GitHub</a>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Data Visualization Dashboard -->
+                    <div class="card p-8 shadow-xl fade-in pop-in-delay-3">
+                        <img src="https://placehold.co/600x400/374151/FFFFFF?text=Data+Visualization+Dashboard" alt="Data Visualization Dashboard" class="rounded-2xl mb-6 w-full h-48 object-cover">
+                        <h3 class="text-3xl font-semibold text-white mb-2">Interactive Data Visualization Dashboard</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Unlock the hidden truths of data! This interactive dashboard reveals the overwhelming power levels within complex datasets. Built with React and D3.js, this project fetches data from a REST API and presents it through a series of dynamic charts, graphs, and maps, giving you the power to see clear insights at a glance.</p>
+                        <div class="flex justify-center space-x-6">
+                            <a href="#" class="inline-block bg-teal-500 hover:bg-teal-600 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">View Demo</a>
+                            <a href="#" class="inline-block bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-full font-semibold text-base transition-colors duration-300">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 px-6 fade-in">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="section-header mx-auto">Let's Connect 🤝</h2>
+                <p class="text-lg text-gray-400 mt-12 mb-8 fade-in pop-in-delay-1">
+                    Ready to join forces on your next mission? Feel free to reach out to me below.
+                </p>
+                <form action="#" method="POST" class="bg-gray-900 p-10 rounded-2xl shadow-2xl space-y-6 fade-in pop-in-delay-2">
+                    <div>
+                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-4 rounded-xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-500 text-white" required>
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full p-4 rounded-xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-500 text-white" required>
+                    </div>
+                    <div>
+                        <textarea id="message" name="message" rows="6" placeholder="Your Message" class="w-full p-4 rounded-xl bg-gray-800 border-2 border-gray-700 focus:outline-none focus:ring-4 focus:ring-purple-500 text-white" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 text-center text-gray-500 fade-in">
+        <p>&copy; 2025 Godugu Surya. All rights reserved.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="#" class="hover:text-white transition-colors duration-300">LinkedIn</a>
+            <a href="#" class="hover:text-white transition-colors duration-300">GitHub</a>
+            <a href="#" class="hover:text-white transition-colors duration-300">Twitter</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript for typing effect and scroll animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Typing effect for the hero section
+            const typingTextElement = document.getElementById('typing-text');
+            const phrases = ["A Software Engineer who loves to build.", "A passionate full-stack developer.", "A creator of beautiful web experiences."];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typePhrase() {
+                const currentPhrase = phrases[phraseIndex];
+                const displayedText = currentPhrase.substring(0, charIndex);
+                typingTextElement.textContent = displayedText;
+
+                if (!isDeleting && charIndex < currentPhrase.length) {
+                    charIndex++;
+                    setTimeout(typePhrase, 50);
+                } else if (isDeleting && charIndex > 0) {
+                    charIndex--;
+                    setTimeout(typePhrase, 25);
+                } else if (charIndex === currentPhrase.length && !isDeleting) {
+                    isDeleting = true;
+                    setTimeout(typePhrase, 1000);
+                } else if (charIndex === 0 && isDeleting) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typePhrase, 500);
+                }
+            }
+
+            typePhrase();
+
+            // Intersection Observer for on-scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: unobserve the element after it has become visible
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: remove class to allow re-animation on scroll up
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements to animate
+            const animatedElements = document.querySelectorAll('.fade-in, .pop-in');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
